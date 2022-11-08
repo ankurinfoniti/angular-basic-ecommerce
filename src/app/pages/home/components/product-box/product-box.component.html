@@ -17,7 +17,9 @@
       <div class="flex justify-between">
         <span class="text-red-400">{{ 150 | currency }}</span>
         <button>
-          <mat-icon class="text-gray-400"> shopping_cart </mat-icon>
+          <mat-icon class="text-gray-400" (click)="onAddToCart()">
+            shopping_cart
+          </mat-icon>
         </button>
       </div>
     </div>
