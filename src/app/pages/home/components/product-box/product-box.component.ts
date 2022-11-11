@@ -8,7 +8,7 @@ import { Product } from 'src/app/models/product.model';
 })
 export class ProductBoxComponent implements OnInit {
   @Input() fullWidthMode = false;
-  product: Product = {
+  product: Product | undefined = {
     id: 1,
     title: 'Snikker',
     price: 150,
