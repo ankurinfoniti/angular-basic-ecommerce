@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -24,6 +26,7 @@ import { ProductHeaderComponent } from './pages/home/components/product-header/p
 import { FiltersComponent } from './pages/home/components/filters/filters.component';
 import { ProductBoxComponent } from './pages/home/components/product-box/product-box.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { CartComponent } from './pages/cart/cart.component';
     FiltersComponent,
     ProductBoxComponent,
     CartComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,9 @@ import { CartComponent } from './pages/cart/cart.component';
     MatSnackBarModule,
     MatListModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
